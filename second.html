@@ -1,0 +1,133 @@
+
+
+
+<div class="text-center">
+<a href="index.html" style="border-radius: soild 10px; background-color: white; border-radius:5px;">back</a>
+</div>
+
+
+    <!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="style2.css">
+    <title>Hello, world!</title>
+  </head>
+  <body style="background-image: url(./image/sec.jpg); background-repeat: no-repeat; background-size: cover; ">
+    <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body bala">
+                <label>PRODUCT_IMG</label>
+                <img id="displayedImage" alt="Displayed Image"  width="400px" height="485px" style="object-fit: contain;"><br>
+                  <div>
+                <label>PRODUCT_NAME:</label>
+                <span id="FIRSTNAME"></span><br>
+                <label>DISCRIPTION:</label>
+                <span id="DISCRIPTION"></span><br>
+                <button onclick="increment()">Increment</button>
+                <span id="count">0</span>
+                <button onclick="decrement()">Decrement</button>
+                <p>TOTAL PRICE AFTER DISCOUNT:Rs: <span id="displayDiscountedPrice"> </span></p><br>
+                <div> 
+                    <input class="w3-btn w3-black" type="button" value="ADD TO CART" onclick="validatLogin()"/>
+                 </div>
+            </div>
+            </div>
+          </div>
+        </div>
+        
+    
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    -->
+  </body>
+  <script>
+    let firstname = localStorage.getItem("f1name");
+    document.getElementById("FIRSTNAME").innerHTML = firstname;
+    
+                
+    let lastname = localStorage.getItem("fname");
+    document.getElementById("DISCRIPTION").innerHTML = lastname;
+    
+
+
+   var selectedImageUrl = localStorage.getItem('selectedImageUrl');
+    document.getElementById('displayedImage').src = selectedImageUrl;
+
+    const storedDiscountedPrice = localStorage.getItem('discountedPrice');
+
+ 
+ document.getElementById('displayDiscountedPrice').textContent = storedDiscountedPrice || '0.00';
+ let count = 0; // Counter variable
+
+  function increment() {
+    count ++;
+    
+    updateCount();
+    updateTotalPrice();
+  }
+
+  function decrement() {
+    count = Math.max(0, count );
+    updateCount();
+    updateTotalPrice();
+  }
+
+  function updateCount() {
+    document.getElementById('count').textContent = count;
+  }
+
+  function updateTotalPrice() {
+    const pricePerItem = 10; // Replace with your actual price per item
+    const discount = parseFloat(localStorage.getItem('discountedPrice')) || 0;
+    const totalPrice = count * pricePerItem + (count * pricePerItem * discount);
+
+    document.getElementById('displayDiscountedPrice').textContent = totalPrice.toFixed(2);
+         
+
+     
+     }
+
+ 
+ 
+ function  validatLogin(){
+
+    window.location.href = "third.html";
+//     localStorage.setItem("PRICE", displayDiscountedPrice);
+//                console.log(displayDiscountedPrice);
+ }
+ <!-- Your existing code remains unchanged -->
+
+
+
+    function validatLogin() {
+        // Get the calculated total price from the second page
+        let totalPrice = document.getElementById('displayDiscountedPrice').textContent;
+
+        // Store the calculated total price in localStorage
+        localStorage.setItem("totalPrice", totalPrice);
+
+        // Redirect to the third page
+        window.location.href = "third.html";
+    }
+
+
+ 
+ </script>
+</html>
